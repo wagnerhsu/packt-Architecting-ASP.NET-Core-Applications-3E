@@ -1,6 +1,9 @@
 @SpecialType_HostAddress = http://localhost:5103
 
-GET {{SpecialType_HostAddress}}/weatherforecast/
+GET {{SpecialType_HostAddress}}/minimal-endpoint-input-Person/?name=John&birthday=2011-01-04
 Accept: application/json
 
 ###
+
+GET {{SpecialType_HostAddress}}/minimal-endpoint-input-Person2/?name=John&birthday=2011-01-04
+Accept: application/json

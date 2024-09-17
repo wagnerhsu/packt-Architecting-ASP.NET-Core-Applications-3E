@@ -1,6 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
-using SpecialType;
-using System.Security.Claims;
+using Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,19 +22,7 @@ var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
-app.MapGet("/user", (HttpResponse response, ClaimsPrincipal user) => response.WriteAsync("Identity:" + (user.Identity.Name ?? "Anonymous")));
-app.MapGet(
-            "minimal-endpoint-input-Coordinate/",
-            (Coordinate coordinate) => coordinate
-        );
-app.MapGet(
-            "minimal-endpoint-input-Person/",
-            (Person person) => person
-        );        
-app.MapGet(
-            "minimal-endpoint-input-Person2/",
-            ([AsParameters]Person2 person) => person
-        );                
+
 app.MapGet("/weatherforecast", () =>
 {
     var forecast = Enumerable.Range(1, 5).Select(index =>
@@ -47,14 +33,23 @@ app.MapGet("/weatherforecast", () =>
             summaries[Random.Shared.Next(summaries.Length)]
         ))
         .ToArray();
-    return forecast;
+    return Results.Ok(forecast);
 })
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
+app.MapGet("/newweatherforecast",()=>{
+    var forecast = Enumerable.Range(1, 5).Select(index =>
+        new WeatherForecast
+        (
+            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+            Random.Shared.Next(-20, 55),
+            summaries[Random.Shared.Next(summaries.Length)]
+        ))
+        .ToArray();
+    return TypedResults.Ok(forecast);
+});
+
 app.Run();
 
-public record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+

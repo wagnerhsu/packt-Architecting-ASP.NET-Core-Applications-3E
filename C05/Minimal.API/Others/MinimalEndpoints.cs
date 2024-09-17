@@ -171,8 +171,8 @@ public static class MinimalEndpoints
             .MapGroup("minimal-endpoint-metadata")
             .WithTags("Metadata Endpoints")
             .WithOpenApi()
-            //.WithDescription("Description coming from the Group")
-            //.WithSummary("Summary coming from the Group")
+        //.WithDescription("Description coming from the Group")
+        //.WithSummary("Summary coming from the Group")
         ;
         metadataGroup
             .MapGet(
@@ -181,7 +181,8 @@ public static class MinimalEndpoints
             )
             .WithName(NamedEndpointName)
             //.WithTags("Another tag")
-            .WithOpenApi(operation => {
+            .WithOpenApi(operation =>
+            {
                 operation.Description = "An endpoint that returns its name."; // Same as WithDescription()
                 operation.Summary = $"Endpoint named '{NamedEndpointName}'."; // Same as WithSummary()
                 operation.Deprecated = true;
@@ -191,16 +192,19 @@ public static class MinimalEndpoints
         metadataGroup
             .MapGet(
                 "url-of-named-endpoint/{endpointName?}",
-                (string? endpointName, LinkGenerator linker) => {
+                (string? endpointName, LinkGenerator linker) =>
+                {
                     var name = endpointName ?? NamedEndpointName;
-                    return new {
+                    return new
+                    {
                         name,
                         uri = linker.GetPathByName(name)
                     };
                 }
             )
             .WithDescription("Return the URL of the specified named endpoint.")
-            .WithOpenApi(operation => {
+            .WithOpenApi(operation =>
+            {
                 var endpointName = operation.Parameters[0];
                 endpointName.Description = "The name of the endpoint to get the URL for.";
                 endpointName.AllowEmptyValue = true;
@@ -209,7 +213,7 @@ public static class MinimalEndpoints
             })
         ;
         metadataGroup
-            .MapGet("excluded-from-open-api", () => { })
+            .MapGet("excluded-from-open-api", () => $"Endpoint with excluded-from-open-api.")
             .ExcludeFromDescription()
         ;
     }
@@ -219,12 +223,14 @@ public static class MinimalEndpoints
         var jsonGroup = app.MapGroup("json-serialization").WithTags("Serializer Endpoints");
 
         // kebab-case
-        var kebabSerializer = new JsonSerializerOptions(JsonSerializerDefaults.Web) {
+        var kebabSerializer = new JsonSerializerOptions(JsonSerializerDefaults.Web)
+        {
             PropertyNamingPolicy = JsonNamingPolicy.KebabCaseLower
         };
         jsonGroup.MapGet(
             "kebab-person/",
-            () => TypedResults.Json(new {
+            () => TypedResults.Json(new
+            {
                 FirstName = "John",
                 LastName = "Doe"
             }, kebabSerializer)
@@ -235,7 +241,8 @@ public static class MinimalEndpoints
         enumSerializer.Converters.Add(new JsonStringEnumConverter());
         jsonGroup.MapGet(
             "enum-as-string/",
-            () => TypedResults.Json(new {
+            () => TypedResults.Json(new
+            {
                 FirstName = "John",
                 LastName = "Doe",
                 Rating = Rating.Good,
