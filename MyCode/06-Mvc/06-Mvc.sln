@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcApiDemo", "MvcApiDemo\MvcApiDemo.csproj", "{53120E8E-9576-4913-BC6A-CDBDA09304C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{60E54BAC-568E-4829-B91B-FC8053307537}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{53120E8E-9576-4913-BC6A-CDBDA09304C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53120E8E-9576-4913-BC6A-CDBDA09304C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53120E8E-9576-4913-BC6A-CDBDA09304C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53120E8E-9576-4913-BC6A-CDBDA09304C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60E54BAC-568E-4829-B91B-FC8053307537}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60E54BAC-568E-4829-B91B-FC8053307537}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60E54BAC-568E-4829-B91B-FC8053307537}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60E54BAC-568E-4829-B91B-FC8053307537}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
